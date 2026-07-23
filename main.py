@@ -1,18 +1,4 @@
-#Real life
-day_total_seconds = 24 * 60*60 #Hours in a day * seconds in an hour
-time_to_calculate = "23:39:00"
-sunrise = "05:11:00"
-sunset = "21:01:00"
-sunrise_tomorrow = "05:12:00"
-sunset_yesterday = "21:03:00"
-moonphase = "Waxing Gibbous"
-
-#Minecraft
-minecraft_day_total_ticks = 24000
-minecraft_sunrise_tick = 23000
-minecraft_sunset_tick = 13000
-
-#==========================================================================================
+import config
 
 import datetime
 
@@ -38,11 +24,19 @@ def convert_to_seconds(time):
     return time_as_seconds
 
 
-time_to_calculate = convert_to_seconds(convert_to_time_object(time_to_calculate))
-sunrise = convert_to_seconds(convert_to_time_object(sunrise))
-sunset = convert_to_seconds(convert_to_time_object(sunset))
-sunrise_tomorrow = convert_to_seconds(convert_to_time_object(sunrise_tomorrow))
-sunset_yesterday = convert_to_seconds(convert_to_time_object(sunset_yesterday))
+day_total_seconds = config.day_total_seconds
+time_to_calculate = convert_to_seconds(convert_to_time_object(config.time_to_calculate))
+
+sunrise = convert_to_seconds(convert_to_time_object(config.sunrise))
+sunset = convert_to_seconds(convert_to_time_object(config.sunset))
+sunrise_tomorrow = convert_to_seconds(convert_to_time_object(config.sunrise_tomorrow))
+sunset_yesterday = convert_to_seconds(convert_to_time_object(config.sunset_yesterday))
+
+moonphase = config.moonphase
+
+minecraft_day_total_ticks = config.minecraft_day_total_ticks
+minecraft_sunset_tick = config.minecraft_sunset_tick
+minecraft_sunrise_tick = config.minecraft_sunrise_tick
 
 minecraft_day_duration = (minecraft_sunset_tick - minecraft_sunrise_tick) % minecraft_day_total_ticks
 minecraft_night_duration = minecraft_day_total_ticks - minecraft_day_duration
